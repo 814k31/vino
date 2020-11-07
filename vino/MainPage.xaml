@@ -8,23 +8,15 @@
     Title="Batches"
 >
     <AbsoluteLayout>
-        <StackLayout>
-            <Label
-                HorizontalTextAlignment="Center"
-                FontSize="36"
-                Text="Batches"
-                TextColor="Black"
-            />
-            <ListView
-                ItemsSource="{Binding Batches}"
-            >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{ Binding Name }" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+        <ListView
+            ItemsSource="{Binding Batches}"
+        >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{ Binding Name }" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <Button
             AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
