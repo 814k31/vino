@@ -23,5 +23,10 @@ namespace vino
 
             BindingContext = this;
         }
+
+        void onButtonClickedAdd(System.Object sender, System.EventArgs e)
+        {
+            this.batches.add(this.batches.getCollection().Count);
+        }
     }
 }

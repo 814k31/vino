@@ -9,8 +9,6 @@ namespace vino
         public Batches()
         {
             this.batches = new ObservableCollection<int>();
-            this.batches.Add(1);
-            this.batches.Add(2);
         }
 
         public void add(int newBatch)

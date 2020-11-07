@@ -24,6 +24,7 @@
             CornerRadius="25"
             FontSize="25"
             HeightRequest="50"
+            Clicked="onButtonClickedAdd"
             Margin="10"
             Text="+"
             TextColor="White"
