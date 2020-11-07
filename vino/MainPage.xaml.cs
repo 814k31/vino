@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
 namespace vino
@@ -24,9 +18,15 @@ namespace vino
             BindingContext = this;
         }
 
-        void onButtonClickedAdd(System.Object sender, System.EventArgs e)
+        async void onButtonClickedAdd(System.Object sender, System.EventArgs e)
         {
-            this.batches.add(new Batch(this.batches.getCollection().Count.ToString()));
+            Batch newBatch = new Batch("");
+            BatchForm batchForm = new BatchForm(
+                newBatch,
+                shouldCreate => this.batches.add(newBatch)
+            );
+
+            await Navigation.PushModalAsync(batchForm);
         }
     }
 }
