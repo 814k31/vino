@@ -22,7 +22,6 @@
                         <TextCell Text="{ Binding Name }" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
             </ListView>
         </StackLayout>
 
