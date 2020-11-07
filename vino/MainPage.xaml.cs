@@ -18,9 +18,12 @@ namespace vino
             BindingContext = this;
         }
 
-        void onButtonClickedAdd(System.Object sender, System.EventArgs e)
+        async void onButtonClickedAdd(System.Object sender, System.EventArgs e)
         {
-            this.batches.add(new Batch(this.batches.getCollection().Count.ToString()));
+            Batch newBatch = new Batch("");
+            BatchForm batchForm = new BatchForm(newBatch);
+
+            await Navigation.PushModalAsync(batchForm);
         }
     }
 }
