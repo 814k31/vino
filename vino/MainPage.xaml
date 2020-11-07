@@ -11,7 +11,7 @@
             <Label
                 HorizontalTextAlignment="Center"
                 FontSize="36"
-                Text="Batchess"
+                Text="Batches"
                 TextColor="Black"
             />
             <ListView ItemsSource="{Binding Batches}" />
