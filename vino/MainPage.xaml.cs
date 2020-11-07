@@ -21,11 +21,12 @@ namespace vino
         async void onButtonClickedAdd(System.Object sender, System.EventArgs e)
         {
             Batch newBatch = new Batch("");
-            BatchForm batchForm = new BatchForm(newBatch);
+            BatchForm batchForm = new BatchForm(
+                newBatch,
+                shouldCreate => this.batches.add(newBatch)
+            );
 
             await Navigation.PushModalAsync(batchForm);
-
-            this.batches.add(newBatch);
         }
     }
 }
