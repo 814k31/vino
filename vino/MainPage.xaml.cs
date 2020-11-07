@@ -23,7 +23,13 @@ namespace vino
             Batch newBatch = new Batch("");
             BatchForm batchForm = new BatchForm(
                 newBatch,
-                shouldCreate => this.batches.add(newBatch)
+                shouldCreate =>
+                {
+                    if (shouldCreate)
+                    {
+                        this.batches.add(newBatch);
+                    }
+                }
             );
 
             await Navigation.PushModalAsync(batchForm);
