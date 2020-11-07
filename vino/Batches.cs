@@ -4,22 +4,22 @@ namespace vino
 {
     public class Batches
     {
-        private ObservableCollection<int> batches;
+        private ObservableCollection<Batch> batches;
 
         public Batches()
         {
-            this.batches = new ObservableCollection<int>();
+            this.batches = new ObservableCollection<Batch>();
         }
 
-        public void add(int newBatch)
+        public void add(Batch newBatch)
         {
             this.batches.Add(newBatch);
         }
 
-        public ReadOnlyObservableCollection<int> getCollection()
+        public ReadOnlyObservableCollection<Batch> getCollection()
         {
-            ReadOnlyObservableCollection<int> observableBatches = (
-                new ReadOnlyObservableCollection<int>(batches)
+            ReadOnlyObservableCollection<Batch> observableBatches = (
+                new ReadOnlyObservableCollection<Batch>(batches)
             );
 
             return observableBatches;

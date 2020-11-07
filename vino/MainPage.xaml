@@ -14,7 +14,16 @@
                 Text="Batches"
                 TextColor="Black"
             />
-            <ListView ItemsSource="{Binding Batches}" />
+            <ListView
+                ItemsSource="{Binding Batches}"
+            >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{ Binding Name }" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
         </StackLayout>
 
         <Button

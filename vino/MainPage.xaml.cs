@@ -12,9 +12,9 @@ namespace vino
     public partial class MainPage : ContentPage
     {
         Batches batches;
-        public ReadOnlyObservableCollection<int> Batches {
-            get { return batches.getCollection(); }
-        }
+
+        public ReadOnlyObservableCollection<Batch> Batches
+        { get { return batches.getCollection(); } }
 
         public MainPage()
         {
@@ -26,7 +26,7 @@ namespace vino
 
         void onButtonClickedAdd(System.Object sender, System.EventArgs e)
         {
-            this.batches.add(this.batches.getCollection().Count);
+            this.batches.add(new Batch(this.batches.getCollection().Count.ToString()));
         }
     }
 }
