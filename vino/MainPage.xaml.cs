@@ -24,6 +24,8 @@ namespace vino
             BatchForm batchForm = new BatchForm(newBatch);
 
             await Navigation.PushModalAsync(batchForm);
+
+            this.batches.add(newBatch);
         }
     }
 }
