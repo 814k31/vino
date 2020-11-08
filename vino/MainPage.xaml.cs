@@ -23,7 +23,8 @@ namespace vino
             Batch newBatch = new Batch("");
             BatchForm batchForm = new BatchForm(
                 newBatch,
-                shouldCreate =>
+                "Create Batch",
+                async shouldCreate =>
                 {
                     if (shouldCreate)
                     {
