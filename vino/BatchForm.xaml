@@ -5,7 +5,7 @@
         <Entry Placeholder="Name" Text="{Binding Batch.Name}" />
         <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
             <Button Clicked="onButtonClickedCancel" Margin="10" Text="Cancel" />
-            <Button Clicked="onButtonClickedCreate" Margin="10" Text="Create" />
+            <Button Clicked="onButtonClickedSubmit" Margin="10" Text="Submit" />
         </StackLayout>
     </StackLayout>
 </ContentPage>
