@@ -23,8 +23,25 @@ namespace vino
             BindingContext = this;
         }
 
-        void onClickedToolBarItemEdit(System.Object sender, System.EventArgs e)
+        async void onClickedToolBarItemEdit(System.Object sender, System.EventArgs e)
         {
+            Batch batchCopyToEdit = new Batch(this.batch);
+
+            BatchForm batchForm = new BatchForm(
+                batchCopyToEdit,
+                "Edit Batch",
+                async shouldUpdate =>
+                {
+                    if (shouldUpdate)
+                    {
+                        this.batch.Name = batchCopyToEdit.Name;
+                    }
+
+                    await Navigation.PopModalAsync();
+                }
+            );
+
+            await Navigation.PushModalAsync(batchForm);
         }
     }
 }
