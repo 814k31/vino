@@ -1,6 +1,6 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
+
+using vino.viewmodels;
 
 namespace vino
 {
@@ -8,7 +8,7 @@ namespace vino
     {
         public App()
         {
-            var batches = new Batches();
+            var batches = new BatchesViewModel();
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage(batches));

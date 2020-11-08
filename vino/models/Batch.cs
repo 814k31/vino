@@ -1,16 +1,12 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
-namespace vino
+namespace vino.models
 {
-    public class Batch : INotifyPropertyChanged
+    public class Batch
     {
         private DateTime dateCreated;
         private DateTime? dateUpdated;
         private string name;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public Batch(string name)
         {
@@ -26,18 +22,14 @@ namespace vino
             this.name = batch.name;
         }
 
-        public string Name
+        public string getName()
         {
-            get { return this.name; }
-            set {
-                this.name = value;
-                this.OnPropertyChanged();
-            }
+            return this.name;
         }
 
-        void OnPropertyChanged([CallerMemberName] string name = "")
+        public string setName(string newName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            return this.name = newName;
         }
     }
 }

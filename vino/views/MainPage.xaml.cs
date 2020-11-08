@@ -1,26 +1,27 @@
-﻿using System.Collections.ObjectModel;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
+
+using vino.viewmodels;
 
 namespace vino
 {
     public partial class MainPage : ContentPage
     {
-        Batches batches;
+        BatchesViewModel batches;
 
-        public ReadOnlyObservableCollection<Batch> Batches
-        { get { return this.batches.getCollection(); } }
+        public BatchesViewModel Batches
+        { get { return this.batches; } }
 
-        public MainPage(Batches batches)
+        public MainPage(BatchesViewModel batches)
         {
             this.batches = batches;
-            InitializeComponent();
+            this.InitializeComponent();
 
-            BindingContext = this;
+            this.BindingContext = this;
         }
 
         async void onButtonClickedAdd(System.Object sender, System.EventArgs e)
         {
-            Batch newBatch = new Batch("");
+            BatchViewModel newBatch = new BatchViewModel();
             BatchForm batchForm = new BatchForm(
                 newBatch,
                 "Create Batch",
@@ -41,7 +42,7 @@ namespace vino
         async void onListViewItemClicked(System.Object sender, System.EventArgs e)
         {
             var listViewBatches = (ListView) sender;
-            var batch = (Batch) listViewBatches.SelectedItem;
+            var batch = (BatchViewModel) listViewBatches.SelectedItem;
 
             var batchPage = new BatchPage(this.batches, batch);
 
