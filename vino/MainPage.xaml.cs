@@ -8,11 +8,11 @@ namespace vino
         Batches batches;
 
         public ReadOnlyObservableCollection<Batch> Batches
-        { get { return batches.getCollection(); } }
+        { get { return this.batches.getCollection(); } }
 
-        public MainPage()
+        public MainPage(Batches batches)
         {
-            this.batches = new Batches();
+            this.batches = batches;
             InitializeComponent();
 
             BindingContext = this;
@@ -23,16 +23,29 @@ namespace vino
             Batch newBatch = new Batch("");
             BatchForm batchForm = new BatchForm(
                 newBatch,
-                shouldCreate =>
+                "Create Batch",
+                async shouldCreate =>
                 {
                     if (shouldCreate)
                     {
                         this.batches.add(newBatch);
                     }
+
+                    await Navigation.PopModalAsync();
                 }
             );
 
             await Navigation.PushModalAsync(batchForm);
+        }
+
+        async void onListViewItemClicked(System.Object sender, System.EventArgs e)
+        {
+            var listViewBatches = (ListView) sender;
+            var batch = (Batch) listViewBatches.SelectedItem;
+
+            var batchPage = new BatchPage(this.batches, batch);
+
+            await Navigation.PushAsync(batchPage);
         }
     }
 }

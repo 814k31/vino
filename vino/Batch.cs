@@ -6,24 +6,31 @@ namespace vino
 {
     public class Batch : INotifyPropertyChanged
     {
-        private string name;
         private DateTime dateCreated;
         private DateTime? dateUpdated;
+        private string name;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Batch(string name)
         {
-            this.name = name;
             this.dateCreated = new DateTime();
             this.dateUpdated = null;
+            this.name = name;
+        }
+
+        public Batch(Batch batch)
+        {
+            this.dateCreated = batch.dateCreated;
+            this.dateUpdated = batch.dateUpdated;
+            this.name = batch.name;
         }
 
         public string Name
         {
             get { return this.name; }
             set {
-                name = value;
+                this.name = value;
                 this.OnPropertyChanged();
             }
         }

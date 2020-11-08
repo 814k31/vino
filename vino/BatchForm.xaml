@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="vino.BatchForm">
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-        <Label FontSize="20" HorizontalOptions="Center" Text="Create Batch" />
-        <Entry Placeholder="Name" Text="{Binding Name}" />
+        <Label FontSize="36" HorizontalOptions="Center" Text="{Binding TitleForm}" />
+        <Entry Placeholder="Name" Text="{Binding Batch.Name}" />
         <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
             <Button Clicked="onButtonClickedCancel" Margin="10" Text="Cancel" />
-            <Button Clicked="onButtonClickedCreate" Margin="10" Text="Create" />
+            <Button Clicked="onButtonClickedSubmit" Margin="10" Text="Submit" />
         </StackLayout>
     </StackLayout>
 </ContentPage>
