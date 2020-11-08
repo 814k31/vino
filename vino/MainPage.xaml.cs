@@ -34,5 +34,15 @@ namespace vino
 
             await Navigation.PushModalAsync(batchForm);
         }
+
+        async void onListViewItemClicked(System.Object sender, System.EventArgs e)
+        {
+            var listViewBatches = (ListView) sender;
+            var batch = (Batch) listViewBatches.SelectedItem;
+
+            var batchPage = new BatchPage(this.batches, batch);
+
+            await Navigation.PushAsync(batchPage);
+        }
     }
 }
