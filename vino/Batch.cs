@@ -19,6 +19,13 @@ namespace vino
             this.dateUpdated = null;
         }
 
+        public Batch(Batch batch)
+        {
+            this.name = batch.name;
+            this.dateCreated = batch.dateCreated;
+            this.dateUpdated = batch.dateUpdated;
+        }
+
         public string Name
         {
             get { return this.name; }
