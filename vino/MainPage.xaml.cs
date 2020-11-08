@@ -10,9 +10,9 @@ namespace vino
         public ReadOnlyObservableCollection<Batch> Batches
         { get { return batches.getCollection(); } }
 
-        public MainPage()
+        public MainPage(Batches batches)
         {
-            this.batches = new Batches();
+            this.batches = batches;
             InitializeComponent();
 
             BindingContext = this;

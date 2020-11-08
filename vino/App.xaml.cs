@@ -8,9 +8,10 @@ namespace vino
     {
         public App()
         {
+            var batches = new Batches();
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage(batches));
         }
 
         protected override void OnStart()
