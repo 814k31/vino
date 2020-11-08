@@ -26,16 +26,14 @@ namespace vino
             BindingContext = this;
         }
 
-        async void onButtonClickedCreate(System.Object sender, System.EventArgs e)
+        void onButtonClickedSubmit(System.Object sender, System.EventArgs e)
         {
             this.onSubmit(true);
-            await Navigation.PopModalAsync();
         }
 
-        async void onButtonClickedCancel(System.Object sender, System.EventArgs e)
+        void onButtonClickedCancel(System.Object sender, System.EventArgs e)
         {
             this.onSubmit(false);
-            await Navigation.PopModalAsync();
         }
     }
 }

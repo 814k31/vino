@@ -30,6 +30,8 @@ namespace vino
                     {
                         this.batches.add(newBatch);
                     }
+
+                    await Navigation.PopModalAsync();
                 }
             );
 
