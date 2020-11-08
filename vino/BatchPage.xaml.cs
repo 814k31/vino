@@ -22,5 +22,9 @@ namespace vino
 
             BindingContext = this;
         }
+
+        void onClickedToolBarItemEdit(System.Object sender, System.EventArgs e)
+        {
+        }
     }
 }
