@@ -1,5 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using Firebase.Database;
+using Firebase.Database.Query;
+
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 
 using vino.models;
 
@@ -13,6 +17,22 @@ namespace vino.viewmodels
         public BatchesViewModel()
         {
             this.batches = new ObservableCollection<BatchViewModel>();
+
+            this.initialiseWithDatabase();
+        }
+
+        private async void initialiseWithDatabase()
+        {
+            var firebaseClient = new FirebaseClient("https://vino-54f1f.firebaseio.com/");
+            var results = (await firebaseClient
+                .Child("batchTest")
+                .OnceAsync<BatchViewModel>()
+            );
+
+            results
+                .Select(item => new BatchViewModel(new Batch(item.Object.Name)))
+                .ToList()
+                .ForEach(batch => this.add(batch));
         }
 
         public ObservableCollection<BatchViewModel> Collection
