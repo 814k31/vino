@@ -8,7 +8,7 @@
     Title="Batches"
 >
     <AbsoluteLayout>
-        <ListView ItemsSource="{Binding Batches}" ItemTapped="onListViewItemClicked">
+        <ListView ItemsSource="{Binding Batches.Collection}" ItemTapped="onListViewItemClicked">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}" />

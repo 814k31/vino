@@ -1,12 +1,14 @@
 ﻿using Xamarin.Forms;
 
+using vino.viewmodels;
+
 namespace vino
 {
     public partial class App : Application
     {
         public App()
         {
-            var batches = new Batches();
+            var batches = new BatchesViewModel();
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage(batches));
