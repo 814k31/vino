@@ -8,7 +8,7 @@ namespace vino
         Batches batches;
 
         public ReadOnlyObservableCollection<Batch> Batches
-        { get { return batches.getCollection(); } }
+        { get { return this.batches.getCollection(); } }
 
         public MainPage(Batches batches)
         {
