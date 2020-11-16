@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 
+using vino.models;
 using vino.viewmodels;
 
 namespace vino
@@ -16,6 +17,8 @@ namespace vino
 
         protected override void OnStart()
         {
+            var restService = new RestService();
+            restService.get("https://vino-api.azurewebsites.net/api/batches");
         }
 
         protected override void OnSleep()
