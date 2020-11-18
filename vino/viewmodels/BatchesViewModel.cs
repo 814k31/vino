@@ -1,5 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using Newtonsoft.Json;
 
 using vino.models;
 
@@ -10,14 +13,15 @@ namespace vino.viewmodels
         private ObservableCollection<BatchViewModel> batches;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public BatchesViewModel()
-        {
-            this.batches = new ObservableCollection<BatchViewModel>();
-        }
-
         public ObservableCollection<BatchViewModel> Collection
         {
             get { return this.batches; }
+        }
+
+        public BatchesViewModel()
+        {
+            this.batches = new ObservableCollection<BatchViewModel>();
+            this.fetchBatches();
         }
 
         public void add(Batch batch)
@@ -29,6 +33,19 @@ namespace vino.viewmodels
         {
             this.batches.Add(batch);
             this.OnPropertyChanged(nameof(this.Collection));
+        }
+
+        async private void fetchBatches()
+        {
+            var restService = new RestService();
+            var batchesJsonString = await restService.get("https://vino-api.azurewebsites.net/api/batches");
+            Debug.WriteLine(@"\tbatchesJsonString!!! {0}", batchesJsonString);
+            var batchList = JsonConvert.DeserializeObject<List<Batch>>(batchesJsonString);
+
+            batchList.ForEach(batch => {
+                Debug.WriteLine(@"\tBATCH!!! {0}", batch.Name);
+                this.batches.Add(new BatchViewModel(batch));
+            });
         }
 
         void OnPropertyChanged(string name = "")
