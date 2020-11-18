@@ -4,14 +4,15 @@ namespace vino.models
 {
     public class Batch
     {
-        private DateTime dateCreated;
-        private DateTime? dateUpdated;
-        private string name;
+        public DateTime dateCreated { get; set; }
+        public DateTime? dateUpdated { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+
+        public Batch() {}
 
         public Batch(string name)
         {
-            this.dateCreated = new DateTime();
-            this.dateUpdated = null;
             this.name = name;
         }
 
@@ -20,16 +21,7 @@ namespace vino.models
             this.dateCreated = batch.dateCreated;
             this.dateUpdated = batch.dateUpdated;
             this.name = batch.name;
-        }
-
-        public string getName()
-        {
-            return this.name;
-        }
-
-        public string setName(string newName)
-        {
-            return this.name = newName;
+            this.id = batch.id;
         }
     }
 }
