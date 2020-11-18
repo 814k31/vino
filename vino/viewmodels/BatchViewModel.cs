@@ -7,27 +7,26 @@ namespace vino.viewmodels
 {
     public class BatchViewModel : INotifyPropertyChanged
     {
-        private Batch batch;
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public Batch Batch
+        { get; }
 
         public BatchViewModel()
         {
-            this.batch = new Batch("");
+            this.Batch = new Batch("");
         }
 
         public BatchViewModel(Batch batch)
         {
-            this.batch = batch;
+            this.Batch = batch;
         }
-
-        public Batch Batch
-        { get { return this.batch; } }
 
         public string Name
         {
-            get { return this.batch.getName(); }
+            get { return this.Batch.Name; }
             set {
-                this.batch.setName(value);
+                this.Batch.Name = value;
                 this.OnPropertyChanged();
             }
         }
