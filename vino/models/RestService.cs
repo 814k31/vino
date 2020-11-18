@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace vino.models
@@ -15,19 +14,22 @@ namespace vino.models
             this.client = new HttpClient();
         }
 
-        public async Task get(String url)
+        public async Task<String> get(String url)
         {
             Uri uri = new Uri(url);
+            String json = null;
 
             try
             {
                 HttpResponseMessage response = await this.client.GetAsync(uri);
-                String body = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine(@"Successfully retrieved {0}", body);
+                json = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine(@"\t yooooo!! {0}", json);
             } catch(Exception error)
             {
                 Debug.WriteLine(@"\tERROR {0}", error.Message);
             }
+
+            return json;
         }
     }
 }
