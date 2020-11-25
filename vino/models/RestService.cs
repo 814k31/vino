@@ -24,7 +24,6 @@ namespace vino.models
             {
                 HttpResponseMessage response = await this.client.GetAsync(uri);
                 json = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine(@"\t yooooo!! {0}", json);
             } catch(Exception error)
             {
                 Debug.WriteLine(@"\tERROR {0}", error.Message);
