@@ -9,6 +9,8 @@ namespace vino
         private BatchesViewModel batches;
         private BatchViewModel batch;
 
+        private bool isSaving = false;
+
         public BatchViewModel Batch
         { get { return this.batch; } }
 
@@ -24,6 +26,12 @@ namespace vino
 
         async void onClickedToolBarItemEdit(System.Object sender, System.EventArgs e)
         {
+            if (isSaving)
+            {
+                return;
+            }
+
+            isSaving = true;
             BatchViewModel batchCopyToEdit = new BatchViewModel(this.batch.Batch); 
 
             BatchForm batchForm = new BatchForm(
@@ -31,9 +39,12 @@ namespace vino
                 "Edit Batch",
                 async shouldUpdate =>
                 {
+                    isSaving = false;
+
                     if (shouldUpdate)
                     {
                         this.batch.Name = batchCopyToEdit.Name;
+
                     }
 
                     await Navigation.PopModalAsync();
