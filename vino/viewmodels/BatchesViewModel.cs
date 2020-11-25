@@ -10,17 +10,17 @@ namespace vino.viewmodels
 {
     public class BatchesViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<BatchViewModel> batches;
+        private BindingList<BatchViewModel> batches;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<BatchViewModel> Collection
+        public BindingList<BatchViewModel> Collection
         {
             get { return this.batches; }
         }
 
         public BatchesViewModel()
         {
-            this.batches = new ObservableCollection<BatchViewModel>();
+            this.batches = new BindingList<BatchViewModel>();
             this.fetchBatches();
         }
 
