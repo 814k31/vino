@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Linq;
-
 using vino.models;
+using System;
 
 namespace vino.viewmodels
 {
@@ -39,12 +38,12 @@ namespace vino.viewmodels
         async private void addRemote(Batch batch)
         {
             var restService = new RestService();
-            var url = "https://vino-api.azurewebsites.net/api/batches/";
+            var url = "https://10.0.2.2:5001/api/batches/";
             var json = JsonConvert.SerializeObject(batch);
             var batchJsonString = await restService.post(url, json);
             var batchFromServer = JsonConvert.DeserializeObject<Batch>(batchJsonString);
 
-            Debug.WriteLine(@"\tBATCH!!! {0}", batchFromServer.Name);
+            Debug.WriteLine("\tBATCH!!! {0}", batchFromServer.Name);
             this.add(batchFromServer);
         }
 
@@ -58,32 +57,29 @@ namespace vino.viewmodels
         async private void fetchBatches()
         {
             var restService = new RestService();
-            var batchesJsonString = await restService.get("https://vino-api.azurewebsites.net/api/batches/");
-            Debug.WriteLine(@"\tbatchesJsonString!!! {0}", batchesJsonString);
-            var batchList = JsonConvert.DeserializeObject<List<Batch>>(batchesJsonString);
+            List<Batch> batchList = null;
+
+            var batchesJsonString = await restService.get("https://10.0.2.2:5001/api/batches/");
+            Debug.WriteLine("batchesJsonString!!!", batchesJsonString);
+            batchList = JsonConvert.DeserializeObject<List<Batch>>(batchesJsonString);
+
 
             batchList.ForEach(batch => {
-                Debug.WriteLine(@"\tBATCH!!! {0}", batch.Name);
-                var batchViewModel = this.get(batch.Id);
-
-                if (batchViewModel != null)
-                {
-                    this.batches.Remove(batchViewModel);
-                }
-
+                Debug.WriteLine("BATCH!!!", batch.Name);
                 this.batches.Add(new BatchViewModel(batch));
             });
+            OnPropertyChanged(nameof(Collection));
         }
 
         async private void updateBatch(Batch batch)
         {
             var restService = new RestService();
 
-            var url = "https://vino-api.azurewebsites.net/api/batches/" + batch.Id;
+            var url = "https://10.0.2.2:5001/api/batches/" + batch.Id;
             var json = JsonConvert.SerializeObject(batch);
             var batchesJsonString = await restService.put(url, json);
 
-            Debug.WriteLine(@"\tbatchesJsonString!!! {0}", batchesJsonString);
+            Debug.WriteLine("batchesJsonString!!! {0}", batchesJsonString);
             var updatedBatch = JsonConvert.DeserializeObject<Batch>(batchesJsonString);
 
             var batchViewModel = this.get(batch.Id);

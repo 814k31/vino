@@ -12,7 +12,12 @@ namespace vino.models
 
         public RestService()
         {
-            this.client = new HttpClient();
+            var httpClientHandler = new HttpClientHandler();
+
+            httpClientHandler.ServerCertificateCustomValidationCallback =
+            (message, cert, chain, errors) => { return true; };
+
+            this.client = new HttpClient(httpClientHandler);
         }
 
         public async Task<String> get(String url)
